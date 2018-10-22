@@ -15,6 +15,7 @@
 		3D06902E21786CD70058EF33 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D06902D21786CD70058EF33 /* main.m */; };
 		3D06903821786CD70058EF33 /* watermarkCameraTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D06903721786CD70058EF33 /* watermarkCameraTests.m */; };
 		3D06904321786CD70058EF33 /* watermarkCameraUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D06904221786CD70058EF33 /* watermarkCameraUITests.m */; };
+		586642427C2E836DE44AB93D /* libPods-watermarkCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 059AE1B3AF9BA0937C8E56C4 /* libPods-watermarkCamera.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		059AE1B3AF9BA0937C8E56C4 /* libPods-watermarkCamera.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-watermarkCamera.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D06901B21786CD50058EF33 /* watermarkCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watermarkCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D06901E21786CD50058EF33 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3D06901F21786CD50058EF33 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -51,6 +53,8 @@
 		3D06903E21786CD70058EF33 /* watermarkCameraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = watermarkCameraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D06904221786CD70058EF33 /* watermarkCameraUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = watermarkCameraUITests.m; sourceTree = "<group>"; };
 		3D06904421786CD70058EF33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5A8E1180D537A18DEA7525A0 /* Pods-watermarkCamera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watermarkCamera.debug.xcconfig"; path = "Pods/Target Support Files/Pods-watermarkCamera/Pods-watermarkCamera.debug.xcconfig"; sourceTree = "<group>"; };
+		E67C47C843B2E5527CFDD7E8 /* Pods-watermarkCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watermarkCamera.release.xcconfig"; path = "Pods/Target Support Files/Pods-watermarkCamera/Pods-watermarkCamera.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				586642427C2E836DE44AB93D /* libPods-watermarkCamera.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A4AAA3ABD753A1BD028C366 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				059AE1B3AF9BA0937C8E56C4 /* libPods-watermarkCamera.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3D06901221786CD50058EF33 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +98,8 @@
 				3D06903621786CD70058EF33 /* watermarkCameraTests */,
 				3D06904121786CD70058EF33 /* watermarkCameraUITests */,
 				3D06901C21786CD50058EF33 /* Products */,
+				CA96192F0E56C181E2BE4D3E /* Pods */,
+				0A4AAA3ABD753A1BD028C366 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,6 +147,15 @@
 			path = watermarkCameraUITests;
 			sourceTree = "<group>";
 		};
+		CA96192F0E56C181E2BE4D3E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5A8E1180D537A18DEA7525A0 /* Pods-watermarkCamera.debug.xcconfig */,
+				E67C47C843B2E5527CFDD7E8 /* Pods-watermarkCamera.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -139,9 +163,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D06904721786CD70058EF33 /* Build configuration list for PBXNativeTarget "watermarkCamera" */;
 			buildPhases = (
+				1CD7A0CBC34F41158B1B6779 /* [CP] Check Pods Manifest.lock */,
 				3D06901721786CD50058EF33 /* Sources */,
 				3D06901821786CD50058EF33 /* Frameworks */,
 				3D06901921786CD50058EF33 /* Resources */,
+				6AB3A12566773043182C12E8 /* [CP] Embed Pods Frameworks */,
+				EEF6A3E7DD9C14EE3EAF270D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -256,6 +283,57 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1CD7A0CBC34F41158B1B6779 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-watermarkCamera-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6AB3A12566773043182C12E8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-watermarkCamera/Pods-watermarkCamera-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EEF6A3E7DD9C14EE3EAF270D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-watermarkCamera/Pods-watermarkCamera-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3D06901721786CD50058EF33 /* Sources */ = {
@@ -431,14 +509,12 @@
 		};
 		3D06904821786CD70058EF33 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A8E1180D537A18DEA7525A0 /* Pods-watermarkCamera.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = watermarkCamera/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ouyang.watermarkCamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -447,14 +523,12 @@
 		};
 		3D06904921786CD70058EF33 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E67C47C843B2E5527CFDD7E8 /* Pods-watermarkCamera.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = watermarkCamera/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ouyang.watermarkCamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -467,11 +541,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = watermarkCameraTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ouyang.watermarkCameraTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -485,11 +555,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = watermarkCameraTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ouyang.watermarkCameraTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -502,11 +568,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = watermarkCameraUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ouyang.watermarkCameraUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -519,11 +581,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = watermarkCameraUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ouyang.watermarkCameraUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

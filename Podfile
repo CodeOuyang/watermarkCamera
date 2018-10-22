@@ -2,14 +2,7 @@
 # platform :ios, '9.0'
 
 target 'watermarkCamera' do
-  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
-  # use_frameworks!
 
-  # Pods for watermarkCamera
-
-  target 'watermarkCameraTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+    pod 'Masonry',      '~> 0.6.4'
 
 end
