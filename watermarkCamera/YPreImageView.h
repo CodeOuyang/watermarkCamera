@@ -10,4 +10,8 @@
 
 @interface YPreImageView : UIView
 
+@property (nonatomic, strong) UIImageView   *imageView;
+@property (nonatomic, strong) UIButton      *reTakeButton;
+@property (nonatomic, strong) UIButton      *useImageButton;
+
 @end

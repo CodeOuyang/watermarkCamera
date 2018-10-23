@@ -22,8 +22,6 @@
 @property (nonatomic, strong) UIButton *flashOpeanButton;
 @property (nonatomic, strong) UIButton *flashCloseButton;
 
-@property (nonatomic, strong) UIButton *HDRButton;
-
 @property (nonatomic, strong) UIButton *cameraSwitchButton;
 @property (nonatomic, strong) UIView   *topbar;
 

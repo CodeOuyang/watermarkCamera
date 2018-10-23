@@ -93,10 +93,10 @@
     [self.preview.layer addSublayer:self.previewLayer];
     [self.view addSubview:self.preview];
     
-        self.previewLayer.frame = CGRectMake(0, 0,ScreenWidth, ScreenHeight-120);
-        [self.previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-        self.preview.topbar.frame = CGRectMake(0, 0, self.view.width, 64 * ScreenWidth/320.0);
-        self.preview.buttomBar.frame = CGRectMake(0, self.view.height - 120, self.view.width, 120);
+    self.previewLayer.frame = CGRectMake(0, 0,ScreenWidth, ScreenHeight-120);
+    [self.previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+    self.preview.topbar.frame = CGRectMake(0, 0, self.view.width, 64 * ScreenWidth/320.0);
+    self.preview.buttomBar.frame = CGRectMake(0, self.view.height - 120, self.view.width, 120);
     
     //添加顶部以及底部的自定义工具条
     [self.view addSubview:self.preview.topbar];
