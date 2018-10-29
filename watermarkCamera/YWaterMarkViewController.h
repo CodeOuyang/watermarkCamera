@@ -1,5 +1,5 @@
 //
-//  waterMarkViewController.h
+//  YWaterMarkViewController.h
 //  watermarkCamera
 //
 //  Created by ouyang151 on 2018/10/22.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface waterMarkViewController : UIViewController
+@interface YWaterMarkViewController : UIViewController
 
 @end
