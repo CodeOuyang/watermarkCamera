@@ -9,6 +9,8 @@
 #import "YPreImageView.h"
 #import "UIView+Category.h"
 
+#define VKiPhoneX ([UIScreen mainScreen].bounds.size.height >= 812)
+
 @implementation YPreImageView
 - (instancetype)init{
     if(self = [super init]){
@@ -35,11 +37,16 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
     
-    self.imageView.frame = CGRectMake(0, 40, self.width, self.height - 120 - 40);
+    if (VKiPhoneX) {
+        self.imageView.frame = CGRectMake(0, 64, self.width, self.height - 164);
+    }else
+    {
+        self.imageView.frame = CGRectMake(0, 0, self.width,self.height - 100);
+    }
     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     CGFloat HMagin = (self.width - 90) / 3;
-    self.reTakeButton.frame = CGRectMake(HMagin,self.height - 90,45,61);
-    self.useImageButton.frame = CGRectMake(HMagin*2 + 45,self.height - 90,45,61);
+    self.reTakeButton.frame = CGRectMake(HMagin,self.height - 70,45,45);
+    self.useImageButton.frame = CGRectMake(HMagin*2 + 45,self.height - 70,45,45);
     [_useImageButton setBackgroundImage:[UIImage imageNamed:@"camera_ensure"] forState:UIControlStateNormal];
     [_reTakeButton setBackgroundImage:[UIImage imageNamed:@"camera_back"] forState:UIControlStateNormal];
     self.backgroundColor = [UIColor whiteColor];
@@ -72,6 +79,7 @@
     }
     return _imageView;
 }
+
 
 
 @end

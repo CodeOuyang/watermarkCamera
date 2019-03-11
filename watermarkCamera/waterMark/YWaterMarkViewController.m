@@ -11,30 +11,30 @@
 #import "YImageOverLayView.h"
 #import "YPreImageView.h"
 #import "UIView+Category.h"
+#import "YWaterView.h"
 
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight  [UIScreen mainScreen].bounds.size.height
+#define VKiPhoneX ([UIScreen mainScreen].bounds.size.height >= 812)
 
 @interface YWaterMarkViewController ()<UIGestureRecognizerDelegate>
 
 @property (nonatomic) dispatch_queue_t sessionQueue;
 
-@property (nonatomic, strong) AVCaptureSession* session;
-
-@property (nonatomic, strong) AVCaptureDeviceInput* videoInput;
-
+@property (nonatomic, strong) AVCaptureSession *session;
+@property (nonatomic, strong) AVCaptureDeviceInput *videoInput;
 @property (nonatomic, strong) AVCaptureStillImageOutput *stillImageOutput;
+@property (nonatomic, strong) AVCaptureDevice *device;
+@property (nonatomic, strong) AVCaptureVideoPreviewLayer *previewLayer;
 
-@property (nonatomic, strong) AVCaptureDevice             *device;
-@property (nonatomic, strong) AVCaptureVideoPreviewLayer* previewLayer;
+@property (nonatomic, assign) CGFloat beginGestureScale;
+@property (nonatomic, assign) CGFloat effectiveScale;
+@property (nonatomic, assign) BOOL isUsingFrontFacingCamera;
 
-@property(nonatomic,assign) CGFloat beginGestureScale;
-
-@property(nonatomic,assign) CGFloat effectiveScale;
-
-@property(nonatomic,assign) BOOL isUsingFrontFacingCamera;
 @property (nonatomic, strong) YImageOverLayView *preview;
 @property (nonatomic, strong) YPreImageView *preImageView;
+@property (nonatomic, strong) YWaterView *waterView;
+@property (nonatomic, strong) UIImage *markedImage;
 
 @end
 
@@ -45,18 +45,30 @@
     [self configueUI];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:YES];
+    [self.navigationController setNavigationBarHidden:YES];
+    if (self.session) {
+        [self.session startRunning];
+    }
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    
+    [super viewDidDisappear:YES];
+    if (self.session) {
+        [self.session stopRunning];
+    }
+}
+
 - (void)configueUI
 {
     [self initAVCaptureSession];
-    
-    //    [self configGesture];
-    //
-    //    [self configActions];
-    
-    
+    [self configGesture];
+    [self configActions];
     
     _isUsingFrontFacingCamera = NO;
-    
     self.effectiveScale = self.beginGestureScale = 1.0f;
 }
 
@@ -95,9 +107,14 @@
     
     self.previewLayer.frame = CGRectMake(0, 0,ScreenWidth, ScreenHeight-120);
     [self.previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-    self.preview.topbar.frame = CGRectMake(0, 0, self.view.width, 64 * ScreenWidth/320.0);
     self.preview.buttomBar.frame = CGRectMake(0, self.view.height - 120, self.view.width, 120);
-    
+    //iPhoneX 适配
+    if (VKiPhoneX) {
+        self.preview.topbar.frame = CGRectMake(0, 30, self.view.width, 70);
+    }else
+    {
+        self.preview.topbar.frame = CGRectMake(0, 0, self.view.width, 70);
+    }
     //添加顶部以及底部的自定义工具条
     [self.view addSubview:self.preview.topbar];
     [self.view addSubview:self.preview.buttomBar];
@@ -109,12 +126,24 @@
     self.preImageView.hidden = YES;
     [self.view addSubview:self.preImageView];
     
+    YWaterView *waterView;
+    if (VKiPhoneX) {
+        waterView  = [[YWaterView alloc] initWithFrame:CGRectMake
+                      (0, 64, ScreenWidth, ScreenHeight- 164)];
+    }
+    else {
+        waterView = [[YWaterView alloc] initWithFrame:CGRectMake
+                     (0, 0, ScreenWidth, ScreenHeight- 100)];
+    }
+    waterView.hidden = YES;
+    _waterView = waterView;
+    [self.view addSubview:waterView];
+    
 }
 
 - (void)configGesture{
     
-    UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self
-                                                                                action:@selector(handlePinchGesture:)];
+    UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self                                                                                action:@selector(handlePinchGesture:)];
     pinch.delegate = self;
     [self.preview addGestureRecognizer:pinch];
     
@@ -137,13 +166,6 @@
     [self.preImageView.useImageButton addTarget:self action:@selector(useImageButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
     //    videoHDREnabled
-}
-
-- (void)HDRButtonClick:(UIButton *)btn
-{
-    btn.selected = !btn.selected;
-    //    self.device.automaticallyAdjustsVideoHDREnabled = btn.selected;
-    //    self.device.videoHDREnabled = btn.selected;
 }
 
 #pragma mark Actions
@@ -192,8 +214,6 @@
 //切换镜头
 - (void)switchCameraSegmentedControlClick:(id)sender {
     
-    //NSLog(@"%ld",(long)sender.selectedSegmentIndex);
-    
     AVCaptureDevicePosition desiredPosition;
     AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     if (_isUsingFrontFacingCamera){
@@ -226,11 +246,9 @@
 }
 
 - (void)flashButtonClick:(UIButton *)sender {
-    //[self.preview reSetTopbar];
-//    [self.preview chosedFlashButton:sender];
     
-    NSLog(@"flashButtonClick");
-    
+    [self.preview chosedFlashButton:sender];
+
     AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     
     //修改前必须先锁定
@@ -255,14 +273,6 @@
     [device unlockForConfiguration];
 }
 
-- (void)waterMarkFixed
-{
-    NSLog(@"WaterMarkFiexd from Super");
-}
-- (void)showWaterPicture:(BOOL)isShow
-{
-    
-}
 - (void)takePhotoButtonClick:(id )sender
 {
     AVCaptureConnection *stillImageConnection = [self.stillImageOutput connectionWithMediaType:AVMediaTypeVideo];
@@ -274,27 +284,34 @@
     [self.stillImageOutput captureStillImageAsynchronouslyFromConnection:stillImageConnection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
         
         if (error) {
-            //byj 错误处理 bugly #22648 防止imageDataSampleBuffer 空
-            [SVProgressHUD showErrorTip:@"拍照失败,请重试!"];
+//            [SVProgressHUD showErrorTip:@"拍照失败,请重试!"];
             return;
         }
         
         NSData *jpegData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
         self.imageData = jpegData;
-        //        CFDictionaryRef attachments = CMCopyDictionaryOfAttachments(kCFAllocatorDefault,
-        //                                                                    imageDataSampleBuffer,
-        //                                                                    kCMAttachmentMode_ShouldPropagate);
+        
         UIImage *image = [UIImage imageWithData:jpegData];
-        [self waterMarkFixed];
         self.preImageView.imageView.image = image;
         [self.preview hiddenSelfAndBars:YES];
         self.preImageView.hidden = NO;
-        [self showWaterPicture:YES];
+        self.waterView.hidden = NO;
+        [self.waterView createErcodeImageview];
         return;
     }];
-    
-    if([self.delegate respondsToSelector:@selector(imagePickerControllerTakePhoto:)])
-        [self.delegate imagePickerControllerTakePhoto:self];
+
+}
+
+//上传水印图片
+- (void)useImageButtonClick:(id )sender
+{
+    self.markedImage = [self productMarkedImage];
+    _waterView.hidden = YES;
+    if([self.delegate respondsToSelector:@selector(imagePickerControllerUseImage:image:)])
+    {
+        [self.delegate imagePickerControllerUseImage:self image:self.markedImage];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
     
 }
 
@@ -302,30 +319,61 @@
     if([self.delegate respondsToSelector:@selector(imagePickerControllerDidCancel:)])
         [self.delegate imagePickerControllerDidCancel:self];
     
-    [GlobalSettings sharedSettings].isWaterCamera = NO;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)retakeButtonClick:(id )sender{
+- (void)retakeButtonClick:(id)sender{
     
     [self.preview hiddenSelfAndBars:NO];
     self.preImageView.hidden = YES;
-    [self showWaterPicture:NO];
+    _waterView.hidden = YES;
     if([self.delegate respondsToSelector:@selector(imagePickerControllerRetakePhoto:)])
         [self.delegate imagePickerControllerRetakePhoto:self];
 }
 
-- (void)useImageButtonClick:(id )sender
+
+
+- (UIImage *)productMarkedImage
 {
-    // must be here to adjust water mark in still image
-    //    [self waterMarkFixed];
     
-    //    [self.preview hiddenSelfAndBars:NO];
-    //    self.preImageView.hidden = YES;
+    UIImage *defaultImage = nil;
     
-    if([self.delegate respondsToSelector:@selector(imagePickerControllerUseImage:image:)]) {
-        [self.delegate imagePickerControllerUseImage:self image:[UIImage imageWithData:self.imageData]];
+    CGSize newSize = CGSizeMake(_waterView.width, _waterView.height);
+    
+    UIGraphicsBeginImageContextWithOptions(newSize, YES, 0.0);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+    
+    for (UIView *view in self.preImageView.subviews) {
+        if([view isKindOfClass:[UIImageView class]]){
+            UIImageView *iv = (UIImageView *)view;
+            UIImage *ivImage = [iv imageByRenderingView];
+            [ivImage drawInRect:CGRectMake(0,0,_waterView.width,_waterView.height)];
+            
+        }
+        
     }
+    for (UIView *view in _waterView.subviews) {
+        if([view isKindOfClass:[UIImageView class]]){
+            UIImageView *iv = (UIImageView *)view;
+            UIImage *ivImage = [iv imageByRenderingView];
+            [ivImage drawInRect:CGRectMake(iv.left,iv.top, iv.width, iv.height)];
+            
+        }
+        else if ([view isKindOfClass:[UILabel class]]){
+            UILabel *lb = (UILabel *)view;
+            UIImage *lbImage = [lb imageByRenderingView];
+            [lbImage drawInRect:CGRectMake(lb.left, lb.top, lb.width, lb.height)];
+        }
+        
+    }
+    
+    CGContextRestoreGState(context);
+    defaultImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return defaultImage;
 }
 
 - (AVCaptureVideoOrientation)avOrientationForDeviceOrientation:(UIDeviceOrientation)deviceOrientation

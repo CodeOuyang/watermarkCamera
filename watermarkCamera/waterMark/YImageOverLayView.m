@@ -8,7 +8,6 @@
 
 #import "YImageOverLayView.h"
 #import "UIView+Category.h"
-#import <AVFoundation/AVFoundation.h>
 
 #define RGB(r,g,b,a) [UIColor \
 colorWithRed:r/255.0 \
@@ -31,6 +30,7 @@ blue:b/255.0 alpha:a]
     
     [self buttomBar];
     [self cancelButton];
+    [self photoAlbumButton];
     [self takePictureButton];
     [self topbar];
     [self cameraSwitchButton];
@@ -39,7 +39,6 @@ blue:b/255.0 alpha:a]
     [self flashOpeanButton];
     [self flashCloseButton];
     [self reSetTopbar];
-    
 }
 
 - (void)layoutSubviews{
@@ -72,12 +71,18 @@ blue:b/255.0 alpha:a]
     _takePictureButton.centerY = _buttomBar.height / 2.0;
     _takePictureButton.width = 75;
     _takePictureButton.height = 75;
-    _cancelButton.frame = CGRectMake(45, 0, 45, 61);
+    _cancelButton.frame = CGRectMake(45, 0, 45, 45);
     _cancelButton.centerY = _buttomBar.height / 2.0 + 6;
+    
+    _photoAlbumButton.left = self.width  - 90;
+    _photoAlbumButton.centerY = _buttomBar.height / 2.0;
+    _photoAlbumButton.width = 45;
+    _photoAlbumButton.height = 45;
+    
     _buttomBar.backgroundColor = [UIColor whiteColor];
     [_cancelButton setBackgroundImage:[UIImage imageNamed:@"camera_back"] forState:UIControlStateNormal];
     [_takePictureButton setBackgroundImage:[UIImage imageNamed:@"camera_Photo"] forState:UIControlStateNormal];
-
+    [_photoAlbumButton setBackgroundImage:[UIImage imageNamed:@"photo_album"] forState:UIControlStateNormal];
     
 }
 
@@ -174,6 +179,18 @@ blue:b/255.0 alpha:a]
     return _takePictureButton;
 }
 
+- (UIButton *)photoAlbumButton{
+    if(_photoAlbumButton == nil){
+        _photoAlbumButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [photoAlbumButton addTarget:self
+//                             action:@selector(photoAlbumButtonClick:)
+//                   forControlEvents:UIControlEventTouchUpInside];
+        [_buttomBar addSubview:_photoAlbumButton];
+    }
+    
+    return _photoAlbumButton;
+}
+
 
 - (UIImageView *)imageLibraryView{
     if(_imageLibraryView == nil){
@@ -211,7 +228,7 @@ blue:b/255.0 alpha:a]
 - (UIButton *)flashAutoButton{
     if(_flashAutoButton == nil){
         _flashAutoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_flashAutoButton setTitle:NSLocalizedString(@"Auto", @"自动") forState:UIControlStateNormal];
+        [_flashAutoButton setTitle:@"自动" forState:UIControlStateNormal];
         [_flashAutoButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_topbar addSubview:_flashAutoButton];
     }
@@ -224,7 +241,7 @@ blue:b/255.0 alpha:a]
     if(_flashOpeanButton == nil){
         _flashOpeanButton = [UIButton buttonWithType:UIButtonTypeCustom];
         // @"打开"
-        [_flashOpeanButton setTitle:NSLocalizedString(@"Open", @"打开") forState:UIControlStateNormal];
+        [_flashOpeanButton setTitle:@"打开" forState:UIControlStateNormal];
         [_flashAutoButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_topbar addSubview:_flashOpeanButton];
     }
@@ -237,7 +254,7 @@ blue:b/255.0 alpha:a]
     if(_flashCloseButton == nil){
         _flashCloseButton = [UIButton buttonWithType:UIButtonTypeCustom];
         // @"关闭"
-        [_flashCloseButton setTitle:NSLocalizedString(@"Close", @"关闭") forState:UIControlStateNormal];
+        [_flashCloseButton setTitle:@"关闭" forState:UIControlStateNormal];
         [_flashAutoButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
         [_topbar addSubview:_flashCloseButton];
