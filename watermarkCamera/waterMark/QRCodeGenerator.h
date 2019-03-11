@@ -3,7 +3,7 @@
 //  VKStaffAssistant
 //
 //  Created by wolfire on 11/2/15.
-//  Copyright © 2015 Vanke. All rights reserved.
+//  Copyright © 2015 . All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
