@@ -13,14 +13,21 @@
 		3D06902E21786CD70058EF33 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D06902D21786CD70058EF33 /* main.m */; };
 		3D06903821786CD70058EF33 /* watermarkCameraTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D06903721786CD70058EF33 /* watermarkCameraTests.m */; };
 		3D06904321786CD70058EF33 /* watermarkCameraUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D06904221786CD70058EF33 /* watermarkCameraUITests.m */; };
-		3D069056217DC4930058EF33 /* YImageOverLayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D069055217DC4930058EF33 /* YImageOverLayView.m */; };
 		3D069059217DC8D80058EF33 /* UIView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D069057217DC8D70058EF33 /* UIView+Category.m */; };
-		3D06905C217DCA1E0058EF33 /* YPreImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D06905B217DCA1E0058EF33 /* YPreImageView.m */; };
-		3DF3CBB02186AEEE0029F443 /* YLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF3CBAF2186AEEE0029F443 /* YLocationManager.m */; };
-		3DF3CBB32186AF800029F443 /* YWaterMarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF3CBB22186AF800029F443 /* YWaterMarkViewController.m */; };
+		3D4749952235FF6F000AC454 /* libMasonry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4749942235FF6F000AC454 /* libMasonry.a */; };
+		3D47499822360B86000AC454 /* YViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D47499722360B86000AC454 /* YViewController.m */; };
+		3D47499B22360EAA000AC454 /* YWaterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D47499A22360EAA000AC454 /* YWaterView.m */; };
+		3D47499E22360FA9000AC454 /* QRCodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D47499D22360FA9000AC454 /* QRCodeGenerator.m */; };
+		3D4749A0223610EA000AC454 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D47499F223610EA000AC454 /* CoreImage.framework */; };
+		3D4749A82236129A000AC454 /* YImageOverLayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4749A322361299000AC454 /* YImageOverLayView.m */; };
+		3D4749A92236129A000AC454 /* YPreImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4749A522361299000AC454 /* YPreImageView.m */; };
+		3D4749AA2236129A000AC454 /* YWaterMarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4749A722361299000AC454 /* YWaterMarkViewController.m */; };
+		3D4749B822363844000AC454 /* AES128Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4749B022363844000AC454 /* AES128Util.m */; };
+		3D4749B922363844000AC454 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4749B222363844000AC454 /* GTMBase64.m */; };
+		3D4749BA22363844000AC454 /* NSData+ASE128.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4749B522363844000AC454 /* NSData+ASE128.m */; };
+		3D4749BB22363844000AC454 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4749B722363844000AC454 /* SFHFKeychainUtils.m */; };
 		3DF3CBB52186B0500029F443 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF3CBB42186B0500029F443 /* AppDelegate.m */; };
 		3DF3CBB72186B4D90029F443 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DF3CBB62186B4D80029F443 /* CoreLocation.framework */; };
-		586642427C2E836DE44AB93D /* libPods-watermarkCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 059AE1B3AF9BA0937C8E56C4 /* libPods-watermarkCamera.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,16 +62,31 @@
 		3D06903E21786CD70058EF33 /* watermarkCameraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = watermarkCameraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D06904221786CD70058EF33 /* watermarkCameraUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = watermarkCameraUITests.m; sourceTree = "<group>"; };
 		3D06904421786CD70058EF33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3D069054217DC4930058EF33 /* YImageOverLayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YImageOverLayView.h; sourceTree = "<group>"; };
-		3D069055217DC4930058EF33 /* YImageOverLayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YImageOverLayView.m; sourceTree = "<group>"; };
 		3D069057217DC8D70058EF33 /* UIView+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Category.m"; sourceTree = "<group>"; };
 		3D069058217DC8D80058EF33 /* UIView+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Category.h"; sourceTree = "<group>"; };
-		3D06905A217DCA1E0058EF33 /* YPreImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YPreImageView.h; sourceTree = "<group>"; };
-		3D06905B217DCA1E0058EF33 /* YPreImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YPreImageView.m; sourceTree = "<group>"; };
-		3DF3CBAE2186AEEE0029F443 /* YLocationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YLocationManager.h; sourceTree = "<group>"; };
-		3DF3CBAF2186AEEE0029F443 /* YLocationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YLocationManager.m; sourceTree = "<group>"; };
-		3DF3CBB12186AF800029F443 /* YWaterMarkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YWaterMarkViewController.h; sourceTree = "<group>"; };
-		3DF3CBB22186AF800029F443 /* YWaterMarkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YWaterMarkViewController.m; sourceTree = "<group>"; };
+		3D4749942235FF6F000AC454 /* libMasonry.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMasonry.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D47499622360B86000AC454 /* YViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YViewController.h; sourceTree = "<group>"; };
+		3D47499722360B86000AC454 /* YViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YViewController.m; sourceTree = "<group>"; };
+		3D47499922360EAA000AC454 /* YWaterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YWaterView.h; sourceTree = "<group>"; };
+		3D47499A22360EAA000AC454 /* YWaterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YWaterView.m; sourceTree = "<group>"; };
+		3D47499C22360FA9000AC454 /* QRCodeGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeGenerator.h; sourceTree = "<group>"; };
+		3D47499D22360FA9000AC454 /* QRCodeGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeGenerator.m; sourceTree = "<group>"; };
+		3D47499F223610EA000AC454 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		3D4749A222361299000AC454 /* YImageOverLayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YImageOverLayView.h; sourceTree = "<group>"; };
+		3D4749A322361299000AC454 /* YImageOverLayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YImageOverLayView.m; sourceTree = "<group>"; };
+		3D4749A422361299000AC454 /* YPreImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPreImageView.h; sourceTree = "<group>"; };
+		3D4749A522361299000AC454 /* YPreImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YPreImageView.m; sourceTree = "<group>"; };
+		3D4749A622361299000AC454 /* YWaterMarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWaterMarkViewController.h; sourceTree = "<group>"; };
+		3D4749A722361299000AC454 /* YWaterMarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWaterMarkViewController.m; sourceTree = "<group>"; };
+		3D4749AF22363844000AC454 /* AES128Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AES128Util.h; sourceTree = "<group>"; };
+		3D4749B022363844000AC454 /* AES128Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AES128Util.m; sourceTree = "<group>"; };
+		3D4749B122363844000AC454 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
+		3D4749B222363844000AC454 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		3D4749B322363844000AC454 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		3D4749B422363844000AC454 /* NSData+ASE128.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ASE128.h"; sourceTree = "<group>"; };
+		3D4749B522363844000AC454 /* NSData+ASE128.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+ASE128.m"; sourceTree = "<group>"; };
+		3D4749B622363844000AC454 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
+		3D4749B722363844000AC454 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
 		3DF3CBB42186B0500029F443 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3DF3CBB62186B4D80029F443 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		5A8E1180D537A18DEA7525A0 /* Pods-watermarkCamera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watermarkCamera.debug.xcconfig"; path = "Pods/Target Support Files/Pods-watermarkCamera/Pods-watermarkCamera.debug.xcconfig"; sourceTree = "<group>"; };
@@ -76,8 +98,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D4749A0223610EA000AC454 /* CoreImage.framework in Frameworks */,
+				3D4749952235FF6F000AC454 /* libMasonry.a in Frameworks */,
 				3DF3CBB72186B4D90029F443 /* CoreLocation.framework in Frameworks */,
-				586642427C2E836DE44AB93D /* libPods-watermarkCamera.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +124,8 @@
 		0A4AAA3ABD753A1BD028C366 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3D47499F223610EA000AC454 /* CoreImage.framework */,
+				3D4749942235FF6F000AC454 /* libMasonry.a */,
 				3DF3CBB62186B4D80029F443 /* CoreLocation.framework */,
 				059AE1B3AF9BA0937C8E56C4 /* libPods-watermarkCamera.a */,
 			);
@@ -132,16 +157,12 @@
 		3D06901D21786CD50058EF33 /* watermarkCamera */ = {
 			isa = PBXGroup;
 			children = (
+				3D4749AE22363844000AC454 /* AES128 */,
+				3D4749A122361299000AC454 /* waterMark */,
 				3D06901E21786CD50058EF33 /* AppDelegate.h */,
 				3DF3CBB42186B0500029F443 /* AppDelegate.m */,
-				3DF3CBB12186AF800029F443 /* YWaterMarkViewController.h */,
-				3DF3CBB22186AF800029F443 /* YWaterMarkViewController.m */,
-				3D069054217DC4930058EF33 /* YImageOverLayView.h */,
-				3D069055217DC4930058EF33 /* YImageOverLayView.m */,
-				3D06905A217DCA1E0058EF33 /* YPreImageView.h */,
-				3D06905B217DCA1E0058EF33 /* YPreImageView.m */,
-				3DF3CBAE2186AEEE0029F443 /* YLocationManager.h */,
-				3DF3CBAF2186AEEE0029F443 /* YLocationManager.m */,
+				3D47499622360B86000AC454 /* YViewController.h */,
+				3D47499722360B86000AC454 /* YViewController.m */,
 				3D069058217DC8D80058EF33 /* UIView+Category.h */,
 				3D069057217DC8D70058EF33 /* UIView+Category.m */,
 				3D06902421786CD50058EF33 /* Main.storyboard */,
@@ -169,6 +190,39 @@
 				3D06904421786CD70058EF33 /* Info.plist */,
 			);
 			path = watermarkCameraUITests;
+			sourceTree = "<group>";
+		};
+		3D4749A122361299000AC454 /* waterMark */ = {
+			isa = PBXGroup;
+			children = (
+				3D47499C22360FA9000AC454 /* QRCodeGenerator.h */,
+				3D47499D22360FA9000AC454 /* QRCodeGenerator.m */,
+				3D4749A222361299000AC454 /* YImageOverLayView.h */,
+				3D4749A322361299000AC454 /* YImageOverLayView.m */,
+				3D4749A422361299000AC454 /* YPreImageView.h */,
+				3D4749A522361299000AC454 /* YPreImageView.m */,
+				3D4749A622361299000AC454 /* YWaterMarkViewController.h */,
+				3D4749A722361299000AC454 /* YWaterMarkViewController.m */,
+				3D47499922360EAA000AC454 /* YWaterView.h */,
+				3D47499A22360EAA000AC454 /* YWaterView.m */,
+			);
+			path = waterMark;
+			sourceTree = "<group>";
+		};
+		3D4749AE22363844000AC454 /* AES128 */ = {
+			isa = PBXGroup;
+			children = (
+				3D4749AF22363844000AC454 /* AES128Util.h */,
+				3D4749B022363844000AC454 /* AES128Util.m */,
+				3D4749B122363844000AC454 /* GTMBase64.h */,
+				3D4749B222363844000AC454 /* GTMBase64.m */,
+				3D4749B322363844000AC454 /* GTMDefines.h */,
+				3D4749B422363844000AC454 /* NSData+ASE128.h */,
+				3D4749B522363844000AC454 /* NSData+ASE128.m */,
+				3D4749B622363844000AC454 /* SFHFKeychainUtils.h */,
+				3D4749B722363844000AC454 /* SFHFKeychainUtils.m */,
+			);
+			path = AES128;
 			sourceTree = "<group>";
 		};
 		CA96192F0E56C181E2BE4D3E /* Pods */ = {
@@ -365,13 +419,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D06905C217DCA1E0058EF33 /* YPreImageView.m in Sources */,
-				3DF3CBB02186AEEE0029F443 /* YLocationManager.m in Sources */,
+				3D4749BA22363844000AC454 /* NSData+ASE128.m in Sources */,
+				3D4749A92236129A000AC454 /* YPreImageView.m in Sources */,
+				3D4749BB22363844000AC454 /* SFHFKeychainUtils.m in Sources */,
+				3D4749A82236129A000AC454 /* YImageOverLayView.m in Sources */,
+				3D4749B922363844000AC454 /* GTMBase64.m in Sources */,
 				3D06902E21786CD70058EF33 /* main.m in Sources */,
-				3DF3CBB32186AF800029F443 /* YWaterMarkViewController.m in Sources */,
+				3D47499822360B86000AC454 /* YViewController.m in Sources */,
 				3DF3CBB52186B0500029F443 /* AppDelegate.m in Sources */,
+				3D47499E22360FA9000AC454 /* QRCodeGenerator.m in Sources */,
 				3D069059217DC8D80058EF33 /* UIView+Category.m in Sources */,
-				3D069056217DC4930058EF33 /* YImageOverLayView.m in Sources */,
+				3D47499B22360EAA000AC454 /* YWaterView.m in Sources */,
+				3D4749AA2236129A000AC454 /* YWaterMarkViewController.m in Sources */,
+				3D4749B822363844000AC454 /* AES128Util.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
