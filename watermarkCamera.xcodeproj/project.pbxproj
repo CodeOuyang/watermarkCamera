@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30F587CE2632F749007BF3C7 /* MADCGTransfromHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 30F587CB2632F749007BF3C7 /* MADCGTransfromHelper.m */; };
 		3D06902621786CD50058EF33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D06902421786CD50058EF33 /* Main.storyboard */; };
 		3D06902821786CD70058EF33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D06902721786CD70058EF33 /* Assets.xcassets */; };
 		3D06902B21786CD70058EF33 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D06902921786CD70058EF33 /* LaunchScreen.storyboard */; };
@@ -28,6 +29,7 @@
 		3D4749BB22363844000AC454 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4749B722363844000AC454 /* SFHFKeychainUtils.m */; };
 		3DF3CBB52186B0500029F443 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF3CBB42186B0500029F443 /* AppDelegate.m */; };
 		3DF3CBB72186B4D90029F443 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DF3CBB62186B4D80029F443 /* CoreLocation.framework */; };
+		5FC9962BEE37F644301217A5 /* libPods-watermarkCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 059AE1B3AF9BA0937C8E56C4 /* libPods-watermarkCamera.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,9 @@
 
 /* Begin PBXFileReference section */
 		059AE1B3AF9BA0937C8E56C4 /* libPods-watermarkCamera.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-watermarkCamera.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		30F587CB2632F749007BF3C7 /* MADCGTransfromHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MADCGTransfromHelper.m; sourceTree = "<group>"; };
+		30F587CC2632F749007BF3C7 /* MADMacroDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADMacroDefines.h; sourceTree = "<group>"; };
+		30F587CD2632F749007BF3C7 /* MADCGTransfromHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADCGTransfromHelper.h; sourceTree = "<group>"; };
 		3D06901B21786CD50058EF33 /* watermarkCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watermarkCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D06901E21786CD50058EF33 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3D06902521786CD50058EF33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -101,6 +106,7 @@
 				3D4749A0223610EA000AC454 /* CoreImage.framework in Frameworks */,
 				3D4749952235FF6F000AC454 /* libMasonry.a in Frameworks */,
 				3DF3CBB72186B4D90029F443 /* CoreLocation.framework in Frameworks */,
+				5FC9962BEE37F644301217A5 /* libPods-watermarkCamera.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,6 +211,9 @@
 				3D4749A722361299000AC454 /* YWaterMarkViewController.m */,
 				3D47499922360EAA000AC454 /* YWaterView.h */,
 				3D47499A22360EAA000AC454 /* YWaterView.m */,
+				30F587CD2632F749007BF3C7 /* MADCGTransfromHelper.h */,
+				30F587CB2632F749007BF3C7 /* MADCGTransfromHelper.m */,
+				30F587CC2632F749007BF3C7 /* MADMacroDefines.h */,
 			);
 			path = waterMark;
 			sourceTree = "<group>";
@@ -245,8 +254,6 @@
 				3D06901721786CD50058EF33 /* Sources */,
 				3D06901821786CD50058EF33 /* Frameworks */,
 				3D06901921786CD50058EF33 /* Resources */,
-				6AB3A12566773043182C12E8 /* [CP] Embed Pods Frameworks */,
-				EEF6A3E7DD9C14EE3EAF270D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -382,36 +389,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6AB3A12566773043182C12E8 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-watermarkCamera/Pods-watermarkCamera-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EEF6A3E7DD9C14EE3EAF270D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-watermarkCamera/Pods-watermarkCamera-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -426,6 +403,7 @@
 				3D4749B922363844000AC454 /* GTMBase64.m in Sources */,
 				3D06902E21786CD70058EF33 /* main.m in Sources */,
 				3D47499822360B86000AC454 /* YViewController.m in Sources */,
+				30F587CE2632F749007BF3C7 /* MADCGTransfromHelper.m in Sources */,
 				3DF3CBB52186B0500029F443 /* AppDelegate.m in Sources */,
 				3D47499E22360FA9000AC454 /* QRCodeGenerator.m in Sources */,
 				3D069059217DC8D80058EF33 /* UIView+Category.m in Sources */,
@@ -601,15 +579,17 @@
 			baseConfigurationReference = 5A8E1180D537A18DEA7525A0 /* Pods-watermarkCamera.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 645X6K34R6;
+				DEVELOPMENT_TEAM = H5H4Z92PRR;
 				INFOPLIST_FILE = watermarkCamera/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ouyang.watermarkCamera;
+				PRODUCT_BUNDLE_IDENTIFIER = com.madao.MADDocScano;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -619,15 +599,17 @@
 			baseConfigurationReference = E67C47C843B2E5527CFDD7E8 /* Pods-watermarkCamera.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 645X6K34R6;
+				DEVELOPMENT_TEAM = H5H4Z92PRR;
 				INFOPLIST_FILE = watermarkCamera/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ouyang.watermarkCamera;
+				PRODUCT_BUNDLE_IDENTIFIER = com.madao.MADDocScano;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

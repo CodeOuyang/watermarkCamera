@@ -12,12 +12,12 @@
 #import "YPreImageView.h"
 #import "UIView+Category.h"
 #import "YWaterView.h"
-
+#import "MADCGTransfromHelper.h"
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight  [UIScreen mainScreen].bounds.size.height
 #define VKiPhoneX ([UIScreen mainScreen].bounds.size.height >= 812)
 
-@interface YWaterMarkViewController ()<UIGestureRecognizerDelegate>
+@interface YWaterMarkViewController ()<UIGestureRecognizerDelegate,AVCaptureVideoDataOutputSampleBufferDelegate>
 
 @property (nonatomic) dispatch_queue_t sessionQueue;
 
@@ -35,6 +35,8 @@
 @property (nonatomic, strong) YPreImageView *preImageView;
 @property (nonatomic, strong) YWaterView *waterView;
 @property (nonatomic, strong) UIImage *markedImage;
+@property (nonatomic, strong) AVCaptureVideoDataOutput *dataOutput;
+
 
 @end
 
@@ -84,17 +86,22 @@
     
     self.videoInput = [[AVCaptureDeviceInput alloc] initWithDevice:self.device error:&error];
     
-    self.stillImageOutput = [[AVCaptureStillImageOutput alloc] init];
-    //输出设置。AVVideoCodecJPEG   输出jpeg格式图片
-    NSDictionary * outputSettings = [[NSDictionary alloc] initWithObjectsAndKeys:AVVideoCodecJPEG,AVVideoCodecKey, nil];
-    [self.stillImageOutput setOutputSettings:outputSettings];
+//    self.stillImageOutput = [[AVCaptureStillImageOutput alloc] init];
+//    //输出设置。AVVideoCodecJPEG   输出jpeg格式图片
+//    NSDictionary * outputSettings = [[NSDictionary alloc] initWithObjectsAndKeys:AVVideoCodecJPEG,AVVideoCodecKey, nil];
+//    [self.stillImageOutput setOutputSettings:outputSettings];
     
+    AVCaptureVideoDataOutput *dataOutput = [[AVCaptureVideoDataOutput alloc] init];
+       [dataOutput setAlwaysDiscardsLateVideoFrames:YES];
+//       [dataOutput setVideoSettings:@{(id)kCVPixelBufferPixelFormatTypeKey:@(kCVPixelFormatType_32BGRA)}];
+       [dataOutput setSampleBufferDelegate:self queue:dispatch_get_main_queue()];
+       [self.session addOutput:dataOutput];
     if ([self.session canAddInput:self.videoInput]) {
         [self.session addInput:self.videoInput];
     }
-    if ([self.session canAddOutput:self.stillImageOutput]) {
-        [self.session addOutput:self.stillImageOutput];
-    }
+//    if ([self.session canAddOutput:self.stillImageOutput]) {
+//        [self.session addOutput:self.stillImageOutput];
+//    }
     
     //初始化预览图层
     self.previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.session];
@@ -118,6 +125,10 @@
     //添加顶部以及底部的自定义工具条
     [self.view addSubview:self.preview.topbar];
     [self.view addSubview:self.preview.buttomBar];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 100, ScreenWidth, 200)];
+    [self.view addSubview:view];
+    view.backgroundColor = [UIColor redColor];
+    view.alpha = 0.5;
     [self.preview layoutSubviews];
     
     
@@ -429,6 +440,77 @@
         self.beginGestureScale = self.effectiveScale;
     }
     return YES;
+}
+- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
+{
+    CVPixelBufferRef pixelBuffer = (CVPixelBufferRef)CMSampleBufferGetImageBuffer(sampleBuffer);
+    
+    CIImage *image = [CIImage imageWithCVPixelBuffer:pixelBuffer];
+    
+    image = [self filteredImageUsingContrastFilterOnImage:image];
+    
+    NSArray <CIFeature *>*features = [[self highAccuracyRectangleDetector] featuresInImage:image];
+    CIRectangleFeature *borderDetectLastRectangleFeature = [self biggestRectangleInRectangles:features];
+       // 将图像空间的坐标系转换成uikit坐标系
+        TransformCIFeatureRect featureRect = [self transfromRealRectWithImageRect:image.extent topLeft:borderDetectLastRectangleFeature.topLeft topRight:borderDetectLastRectangleFeature.topRight bottomLeft:borderDetectLastRectangleFeature.bottomLeft bottomRight:borderDetectLastRectangleFeature.bottomRight];
+    NSLog(@"topLeft%@ topRight%@ bottomRight%@ bottomLeft%@",NSStringFromCGPoint(featureRect.topLeft),NSStringFromCGPoint(featureRect.topRight),NSStringFromCGPoint(featureRect.bottomRight),NSStringFromCGPoint(featureRect.bottomLeft));
+}
+
+- (CIImage *)filteredImageUsingContrastFilterOnImage:(CIImage *)image
+{
+    return [CIFilter filterWithName:@"CIColorControls" withInputParameters:@{@"inputContrast":@(1.1),kCIInputImageKey:image}].outputImage;
+}
+
+// 选取feagure rectangles中最大的矩形
+- (CIRectangleFeature *)biggestRectangleInRectangles:(NSArray *)rectangles
+{
+    if (![rectangles count]) return nil;
+    
+    float halfPerimiterValue = 0;
+    
+    CIRectangleFeature *biggestRectangle = [rectangles firstObject];
+    
+    for (CIRectangleFeature *rect in rectangles)
+    {
+        CGPoint p1 = rect.topLeft;
+        CGPoint p2 = rect.topRight;
+        CGFloat width = hypotf(p1.x - p2.x, p1.y - p2.y);
+        
+        CGPoint p3 = rect.topLeft;
+        CGPoint p4 = rect.bottomLeft;
+        CGFloat height = hypotf(p3.x - p4.x, p3.y - p4.y);
+        
+        CGFloat currentHalfPerimiterValue = height + width;
+        
+        if (halfPerimiterValue < currentHalfPerimiterValue)
+        {
+            halfPerimiterValue = currentHalfPerimiterValue;
+            biggestRectangle = rect;
+        }
+    }
+    
+    return biggestRectangle;
+}
+
+// 高精度边缘识别器
+- (CIDetector *)highAccuracyRectangleDetector
+{
+
+    static CIDetector *detector = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^
+                  {
+                      detector = [CIDetector detectorOfType:CIDetectorTypeRectangle context:nil options:@{CIDetectorAccuracy : CIDetectorAccuracyHigh}];
+                  });
+    return detector;
+}
+
+/// 坐标系转换
+- (TransformCIFeatureRect)transfromRealRectWithImageRect:(CGRect)imageRect topLeft:(CGPoint)topLeft topRight:(CGPoint)topRight bottomLeft:(CGPoint)bottomLeft bottomRight:(CGPoint)bottomRight
+{
+    CGRect previewRect = self.view.frame;
+    
+    return [MADCGTransfromHelper transfromRealCIRectInPreviewRect:previewRect imageRect:imageRect topLeft:topLeft topRight:topRight bottomLeft:bottomLeft bottomRight:bottomRight];
 }
 
 @end
